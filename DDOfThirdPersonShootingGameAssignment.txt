@@ -1,0 +1,18 @@
+Introduction
+------------------------
+
+1. Design a Terrain and Add a water body into it.
+2. Player Movement 
+3. Making Player Animations with Blend Trees.
+4. Take Player Gun point position as a Bullet position.
+5. Lauch bullets from Bullet Position through Object Pool.
+6. Creating Enemy with Finite State Machine.
+7. Spawing the 10 Enemies when Player moves forward.
+8. Shoot the Enemies with RayCast
+9. Add the particle effects while shooting the bullets.
+10. Add the Sounds to the Enemies and Player through Animation Events.
+11. Decrease the health, when Enemy attack the Player
+12. Keep Ammo and Health Boxes for Player
+13. Add Ragdoll effects for the Player and Enemy.
+14. Add UI
+
