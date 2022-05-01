@@ -1707,6 +1707,7 @@ GameObject:
   - component: {fileID: 4976327773862426795}
   - component: {fileID: 4926645232930088591}
   - component: {fileID: 4926645232930088590}
+  - component: {fileID: 6241769180972894637}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Monster
@@ -1789,6 +1790,20 @@ MonoBehaviour:
   target: {fileID: 2581493934386309135, guid: 9ad397e2cd0593c4ab7a634b6f41b51a, type: 3}
   walkingSped: 1
   runningSpeed: 2
+--- !u!136 &6241769180972894637
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4926225773821269573}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &4926225773851601511
 GameObject:
   m_ObjectHideFlags: 0
