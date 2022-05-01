@@ -297,8 +297,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 574603265}
-  m_LocalRotation: {x: -0.07259112, y: -0.51927876, z: -0.044328228, w: 0.85036176}
-  m_LocalPosition: {x: 550.7526, y: 1.04, z: 350.89}
+  m_LocalRotation: {x: 0.27259892, y: 0.3565587, z: -0.10959569, w: 0.8868735}
+  m_LocalPosition: {x: 544, y: 4.1, z: 350.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1699499503}
@@ -368,7 +368,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pool: []
   poolItems:
-  - prefab: {fileID: 4926225773821269573, guid: 276ec81bf3777ea439f65b422a447591, type: 3}
+  - prefab: {fileID: 1000011317694936}
     name: Monster
     amount: 10
 --- !u!1 &705507993
@@ -566,8 +566,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0.07259112, y: -0.51927876, z: -0.044328228, w: 0.85036176}
-  m_LocalPosition: {x: 550.7526, y: 1.04, z: 350.89}
+  m_LocalRotation: {x: 0.27259892, y: 0.3565587, z: -0.10959569, w: 0.8868735}
+  m_LocalPosition: {x: 544, y: 4.1, z: 350.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -962,7 +962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 4.61261, y: 1.04, z: -2.2799988}
+  m_FollowOffset: {x: -2.1400146, y: 4.1, z: -2.2799988}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1

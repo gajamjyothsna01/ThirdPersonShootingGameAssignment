@@ -27,11 +27,11 @@ public class MonsterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(target == null)
+      /*  if(target == null)
         {
             target = GameObject.FindGameObjectWithTag("Player");
             return;
-        }
+        }*/
         switch (state)
         {
 
@@ -102,6 +102,11 @@ public class MonsterController : MonoBehaviour
                 Debug.Log("This is an Attack state");
                 break;
             case STATE.DEAD:
+                TurnOfAllAnim();
+                animator.SetBool("isDead", true);
+                Debug.Log("Entered Dead State");
+                this.gameObject.SetActive(false);
+                Debug.Log("Monster Went to Pool");
                 break;
             default:
                 break;
@@ -139,5 +144,12 @@ public class MonsterController : MonoBehaviour
             return false;
         }
     }
-        
+    public void DeadEnemy()
+    {
+        Debug.Log("Dead State");
+        state = STATE.DEAD;
+        //animator.SetBool("isDead", true);
+
+    }
+
 }

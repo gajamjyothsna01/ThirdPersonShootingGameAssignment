@@ -42,20 +42,14 @@ public class GunScript : MonoBehaviour
 
         if (Physics.Raycast(ray, out hitInfo, 100f))
         {
-            /*GameObject hitZombiee = hitInfo.collider.gameObject;
-            Debug.Log("Got Hot");
-            if(hitZombiee.tag == "Zombiee")
-            {
-                Debug.Log("Found ZOmbiee");
-                hitZombiee.GetComponent<EnemyScript>().Death();
-            }*/
-            // var health = hitInfo.collider.GetComponent<EnemyScript>();
-            /* if (health != null)
-             {
-                 health.DamageMethod(10);
-
-             }*/
             Debug.Log("Fire Shooting");
+            GameObject hitMonster = hitInfo.collider.gameObject;
+            if(hitMonster.tag == "Monster")
+            {
+                Debug.Log("Enemy Found");
+                hitMonster.GetComponent<MonsterController>().DeadEnemy();
+                Debug.Log("Going to Dead State");
+            }
 
         }
     }
