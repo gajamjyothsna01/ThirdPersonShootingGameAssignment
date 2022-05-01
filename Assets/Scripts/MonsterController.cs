@@ -1,0 +1,122 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
+public class MonsterController : MonoBehaviour
+{
+    public GameObject target;
+    Animator animator;
+    NavMeshAgent agent;
+
+    enum STATE
+    {
+        IDLE, WONDER, CHASE, ATTCK, DEAD
+    };
+    STATE state = STATE.IDLE;
+   
+    // Start is called before the first frame update
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+        agent = GetComponent<NavMeshAgent>();
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        switch (state)
+        {
+            case STATE.IDLE:
+                if (SeeThePlayer())
+                {
+                    state = STATE.CHASE;
+                }
+                else
+                    state = STATE.WONDER;
+                break;
+            case STATE.WONDER:
+                if(!agent.hasPath)
+                {
+                    float randValueX = transform.position.x + Random.Range(-5f, 5f);
+                    float randValueZ = transform.position.z + Random.Range(-5f, 5f);
+                    float valueY = Terrain.activeTerrain.SampleHeight(new Vector3(randValueX, 0, randValueZ));
+                    Vector3 destination = new Vector3(randValueX, 0, randValueZ);
+                    agent.SetDestination(destination);
+                    agent.stoppingDistance = 0f;
+                    TurnOfAllAnim();
+                    animator.SetBool("isWalking", true);
+                }
+                if(SeeThePlayer())
+                {
+                    state = STATE.CHASE;
+                }
+
+               
+                break;
+            case STATE.CHASE:
+                agent.SetDestination(target.transform.position);
+                agent.stoppingDistance = 2f;
+                TurnOfAllAnim();
+                animator.SetBool("isRunning", true);
+                if(agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
+                {
+                    state = STATE.ATTCK;
+                }
+                if(CannotSeePlayer())
+                {
+                    state = STATE.WONDER;
+                    agent.ResetPath();
+                }
+
+                break;
+            case STATE.ATTCK:
+                TurnOfAllAnim();
+                animator.SetBool("isAttacking", true);
+                transform.LookAt(target.transform.position); //Enemies Look at Player
+                if(DistanceToPlayer() > agent.stoppingDistance + 2)
+                {
+                    state = STATE.CHASE;
+                }
+                Debug.Log("This is an Attack state");
+                break;
+            case STATE.DEAD:
+                break;
+            default:
+                break;
+        }
+
+    }
+    public void TurnOfAllAnim()
+    {
+        animator.SetBool("isRunning", false);
+        animator.SetBool("isWalking", false);
+        animator.SetBool("isAttacking", false);
+        animator.SetBool("isDead", false);
+    }
+    public bool SeeThePlayer()
+    {
+        if (DistanceToPlayer() < 10f)
+            return true;
+        else
+            return false;
+    }
+
+    private float DistanceToPlayer()
+    {
+
+        return Vector3.Distance(target.transform.position, this.transform.position);
+    }
+    public bool CannotSeePlayer()
+    {
+        if(DistanceToPlayer() > 20f)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+        
+}

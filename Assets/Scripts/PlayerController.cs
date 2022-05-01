@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
         Vector3 movement = new Vector3(inputX, 0f, inputZ);
 
-        characterController.Move(movement * Time.deltaTime);
+       
 
         animator.SetFloat("Speed", movement.magnitude);
         /*
@@ -41,8 +41,8 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(Vector3.up, inputX * playerRotateSpeed * Time.deltaTime);
         if (inputZ != 0)
         {
-            characterController.SimpleMove(transform.forward * Time.deltaTime * inputZ);
-
+            //characterController.SimpleMove(transform.forward * Time.deltaTime * inputZ);
+            characterController.Move(transform.forward * Time.deltaTime * inputZ);
         }
 
 
