@@ -7,6 +7,8 @@ public class MonsterController : MonoBehaviour
     public GameObject target;
     Animator animator;
     NavMeshAgent agent;
+    public float walkingSped;
+    public float runningSpeed;
 
     enum STATE
     {
@@ -27,13 +29,18 @@ public class MonsterController : MonoBehaviour
     {
         switch (state)
         {
+
             case STATE.IDLE:
                 if (SeeThePlayer())
                 {
                     state = STATE.CHASE;
                 }
-                else
+                else if (Random.Range(0,1000) < 5)
+                {
                     state = STATE.WONDER;
+                }
+              
+                   
                 break;
             case STATE.WONDER:
                 if(!agent.hasPath)
@@ -44,12 +51,19 @@ public class MonsterController : MonoBehaviour
                     Vector3 destination = new Vector3(randValueX, 0, randValueZ);
                     agent.SetDestination(destination);
                     agent.stoppingDistance = 0f;
+                    agent.speed = walkingSped;
                     TurnOfAllAnim();
                     animator.SetBool("isWalking", true);
                 }
                 if(SeeThePlayer())
                 {
                     state = STATE.CHASE;
+                }
+                else if(Random.Range(0,1000) < 7)
+                {
+                    state = STATE.IDLE;
+                    TurnOfAllAnim();
+                    agent.ResetPath();
                 }
 
                
@@ -58,7 +72,9 @@ public class MonsterController : MonoBehaviour
                 agent.SetDestination(target.transform.position);
                 agent.stoppingDistance = 2f;
                 TurnOfAllAnim();
+
                 animator.SetBool("isRunning", true);
+                agent.speed = runningSpeed;
                 if(agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
                 {
                     state = STATE.ATTCK;
