@@ -88,4 +88,11 @@ public class PlayerController : MonoBehaviour
 
         }
     }*/
+
+    public void TakeHit(float damageValue)
+    {
+        medical = (int)(Mathf.Clamp(medical-damageValue, 0, maxMedical));
+        Debug.Log("Player Health after attacking Monster" + medical);
+
+    }
 }

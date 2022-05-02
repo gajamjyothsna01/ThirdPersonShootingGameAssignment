@@ -27,11 +27,11 @@ public class MonsterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      /*  if(target == null)
+       if(target == null)
         {
             target = GameObject.FindGameObjectWithTag("Player");
             return;
-        }*/
+        }
         switch (state)
         {
 
@@ -152,6 +152,15 @@ public class MonsterController : MonoBehaviour
 
     }
     int damageAmount = 5;
+    public void DamagePlayer()
+    {
+        if(target != null)
+        {
+            Debug.Log("Damage AMount method is called");
+
+            target.GetComponent<PlayerController>().TakeHit(damageAmount);
+        }
+    }
 
 
 }
