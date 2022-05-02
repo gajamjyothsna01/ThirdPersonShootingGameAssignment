@@ -9,11 +9,14 @@ public class GunScript : MonoBehaviour
     [Range(0.5f, 1.5f)]
     float fireRate = 1.0f;
     [Range(1f, 10f)]
-    float damageRate = 1.0f;
+    //float damageRate = 1.0f;
     float timer;
     public Transform firePoint;
     [SerializeField]
     public AudioSource audioSource;
+    //public Transform effectPosition;
+    //public GameObject shootEffectPrefab;
+   // public ParticleSystem particleSystem;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +49,8 @@ public class GunScript : MonoBehaviour
 
         if (Physics.Raycast(ray, out hitInfo, 100f))
         {
+           // particleSystem.Play();
+           // Instantiate(shootEffectPrefab,effectPosition.position, Quaternion.identity);    
             Debug.Log("Fire Shooting");
             GameObject hitMonster = hitInfo.collider.gameObject;
             if(hitMonster.tag == "Monster")

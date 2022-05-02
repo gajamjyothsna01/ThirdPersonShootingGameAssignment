@@ -93,6 +93,11 @@ public class PlayerController : MonoBehaviour
     {
         medical = (int)(Mathf.Clamp(medical-damageValue, 0, maxMedical));
         Debug.Log("Player Health after attacking Monster" + medical);
+        if(medical <=0)
+        {
+            Debug.Log("Player is dead");
+            Destroy(this.gameObject);
+        }
 
     }
 }

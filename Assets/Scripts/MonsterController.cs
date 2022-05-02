@@ -75,7 +75,7 @@ public class MonsterController : MonoBehaviour
                 break;
             case STATE.CHASE:
                 agent.SetDestination(target.transform.position);
-                agent.stoppingDistance = 2f;
+                agent.stoppingDistance = 3f;
                 TurnOfAllAnim();
 
                 animator.SetBool("isRunning", true);
@@ -95,7 +95,7 @@ public class MonsterController : MonoBehaviour
                 TurnOfAllAnim();
                 animator.SetBool("isAttacking", true);
                 transform.LookAt(target.transform.position); //Enemies Look at Player
-                if(DistanceToPlayer() > agent.stoppingDistance + 2)
+                if(DistanceToPlayer() > agent.stoppingDistance + 3)
                 {
                     state = STATE.CHASE;
                 }
