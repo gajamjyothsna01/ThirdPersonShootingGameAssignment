@@ -8,7 +8,10 @@ public class PlayerController : MonoBehaviour
     public float playerSpeed;
     Animator animator;
     public float playerRotateSpeed;
-    public int health;
+    int medical = 100;
+    int maxMedical = 100;
+    public int ammo = 100;
+    int maxAmmo = 100;
   
 
 
@@ -49,4 +52,40 @@ public class PlayerController : MonoBehaviour
 
 
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Medical" && medical < maxMedical)
+        {
+            Debug.Log("Collected Medical");
+            other.gameObject.SetActive(false);
+            medical = Mathf.Clamp(medical + 10, 0, maxMedical);
+
+        }
+        if (other.gameObject.tag == "Ammo" && ammo < maxAmmo)
+        {
+            Debug.Log("Collected Ammo");
+            Debug.Log("Current Ammo" +ammo);
+            other.gameObject.SetActive(false);
+            medical = Mathf.Clamp(ammo + 10, 0, maxAmmo);
+
+        }
+    }
+    /*
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Medical" && medical < maxMedical)
+        {
+            Debug.Log("Collected Medical");
+            collision.gameObject.SetActive(false);
+            medical = Mathf.Clamp(medical + 10, 0, maxMedical);
+            
+        }
+        if (collision.gameObject.tag == "Ammo" && ammo < maxAmmo)
+        {
+            Debug.Log("Collected Ammo");
+            collision.gameObject.SetActive(false);
+            medical = Mathf.Clamp(ammo + 10, 0, maxAmmo);
+
+        }
+    }*/
 }

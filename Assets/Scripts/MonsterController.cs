@@ -151,5 +151,7 @@ public class MonsterController : MonoBehaviour
         //animator.SetBool("isDead", true);
 
     }
+    int damageAmount = 5;
+
 
 }
