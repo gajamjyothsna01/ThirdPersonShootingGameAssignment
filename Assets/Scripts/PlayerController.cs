@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class PlayerController : MonoBehaviour
     int maxMedical = 100;
     public int ammo = 100;
     int maxAmmo = 100;
-  
+    public Slider playerSlider;
+    public Text playerHealthText;
 
 
     // Start is called before the first frame update
@@ -25,6 +27,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        playerSlider.value = (float) medical / 10;
         float inputX = Input.GetAxis("Horizontal") * playerSpeed;
         float inputZ = Input.GetAxis("Vertical") * playerSpeed;
 
@@ -59,6 +62,8 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Collected Medical");
             other.gameObject.SetActive(false);
             medical = Mathf.Clamp(medical + 10, 0, maxMedical);
+            playerHealthText.text = medical.ToString();
+            playerSlider.value = (float) medical / 10;
 
         }
         if (other.gameObject.tag == "Ammo" && ammo < maxAmmo)
@@ -66,7 +71,9 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Collected Ammo");
             Debug.Log("Current Ammo" +ammo);
             other.gameObject.SetActive(false);
-            medical = Mathf.Clamp(ammo + 10, 0, maxAmmo);
+            ammo = Mathf.Clamp(ammo + 10, 0, maxAmmo);
+           
+
 
         }
     }
@@ -92,8 +99,11 @@ public class PlayerController : MonoBehaviour
     public void TakeHit(float damageValue)
     {
         medical = (int)(Mathf.Clamp(medical-damageValue, 0, maxMedical));
+        
         Debug.Log("Player Health after attacking Monster" + medical);
-        if(medical <=0)
+        playerHealthText.text = medical.ToString();
+        playerSlider.value = (float)medical / 10;
+        if (medical <=0)
         {
             Debug.Log("Player is dead");
             Destroy(this.gameObject);
