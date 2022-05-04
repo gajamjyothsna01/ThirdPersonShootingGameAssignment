@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     int maxAmmo = 100;
     public Slider playerSlider;
     public Text playerHealthText;
-
+   
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerSlider.value = (float) medical / 10;
+        playerSlider.value = (float) medical / 100;
         float inputX = Input.GetAxis("Horizontal") * playerSpeed;
         float inputZ = Input.GetAxis("Vertical") * playerSpeed;
 
@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
             medical = Mathf.Clamp(medical + 10, 0, maxMedical);
             playerHealthText.text = medical.ToString();
-            playerSlider.value = (float) medical / 10;
+            playerSlider.value = (float) medical / 100;
 
         }
         if (other.gameObject.tag == "Ammo" && ammo < maxAmmo)
@@ -72,6 +72,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Current Ammo" +ammo);
             other.gameObject.SetActive(false);
             ammo = Mathf.Clamp(ammo + 10, 0, maxAmmo);
+           
            
 
 

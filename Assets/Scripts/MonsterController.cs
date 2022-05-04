@@ -9,7 +9,7 @@ public class MonsterController : MonoBehaviour
     NavMeshAgent agent;
     public float walkingSped;
     public float runningSpeed;
-
+    public ParticleSystem particleSystem;
     enum STATE
     {
         IDLE, WONDER, CHASE, ATTCK, DEAD
@@ -105,13 +105,20 @@ public class MonsterController : MonoBehaviour
                 TurnOfAllAnim();
                 animator.SetBool("isDead", true);
                 Debug.Log("Entered Dead State");
+                StartCoroutine("DeathAfterDelay");
+               
                 this.gameObject.SetActive(false);
+                particleSystem.Play();
                 Debug.Log("Monster Went to Pool");
                 break;
             default:
                 break;
         }
 
+    }
+    IEnumerator DeathAfterDelay()
+    {
+        yield return new WaitForSeconds(15);
     }
     public void TurnOfAllAnim()
     {

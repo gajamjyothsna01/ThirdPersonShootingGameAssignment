@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GunScript : MonoBehaviour
 {
@@ -14,9 +15,11 @@ public class GunScript : MonoBehaviour
     public Transform firePoint;
     [SerializeField]
     public AudioSource audioSource;
+    public Text ammoText;
+
     //public Transform effectPosition;
     //public GameObject shootEffectPrefab;
-   // public ParticleSystem particleSystem;
+    public ParticleSystem particleSystem;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +45,9 @@ public class GunScript : MonoBehaviour
     {
        int ammoH =  GameObject.Find("Player").GetComponent<PlayerController>().ammo--;
         Debug.Log("Ammo " + ammoH);
+        ammoText.text = ammoH.ToString();  
         audioSource.Play();
+        particleSystem.Play();
         Debug.DrawRay(firePoint.position, transform.forward * 100, Color.red, 2f);
         Ray ray = new Ray(firePoint.position, transform.forward);
         RaycastHit hitInfo;
