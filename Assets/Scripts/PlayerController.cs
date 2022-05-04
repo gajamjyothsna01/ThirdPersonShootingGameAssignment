@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     int maxAmmo = 100;
     public Slider playerSlider;
     public Text playerHealthText;
-   
+    public GameObject youLoose;
 
     // Start is called before the first frame update
     void Start()
@@ -109,7 +109,8 @@ public class PlayerController : MonoBehaviour
         {
 
             Debug.Log("Player is dead");
-            this.gameObject.SetActive(false); 
+            this.gameObject.SetActive(false);
+            youLoose.SetActive(true);
             //GameObject.Find("GameOver").GetComponent<GameOverScript>().GameOverDisplay();
             
         }

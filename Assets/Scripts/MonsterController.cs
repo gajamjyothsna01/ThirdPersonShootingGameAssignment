@@ -113,6 +113,7 @@ public class MonsterController : MonoBehaviour
                 
                 GameObject temp = PoolScript.instance.GetObjectsFromPool("MonsterRagDoll");
                 Debug.Log("RagdOll form Pool");
+                GameObject.Find("ScoreManager").GetComponent<ScoreManagerScript>().Score(10);
                 if (temp != null)
                 {
                     
