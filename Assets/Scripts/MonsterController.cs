@@ -10,6 +10,7 @@ public class MonsterController : MonoBehaviour
     public float walkingSped;
     public float runningSpeed;
     public ParticleSystem particleSystem;
+    public GameObject enemyRagDoll;
     enum STATE
     {
         IDLE, WONDER, CHASE, ATTCK, DEAD
@@ -108,6 +109,7 @@ public class MonsterController : MonoBehaviour
                 StartCoroutine("DeathAfterDelay");
                
                 this.gameObject.SetActive(false);
+                Instantiate(enemyRagDoll, transform.position, Quaternion.identity);
                 particleSystem.Play();
                 Debug.Log("Monster Went to Pool");
                 break;

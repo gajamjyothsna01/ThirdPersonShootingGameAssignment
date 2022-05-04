@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -106,9 +107,13 @@ public class PlayerController : MonoBehaviour
         playerSlider.value = (float)medical / 10;
         if (medical <=0)
         {
+
             Debug.Log("Player is dead");
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false); 
+            //GameObject.Find("GameOver").GetComponent<GameOverScript>().GameOverDisplay();
+            
         }
 
     }
+    
 }
