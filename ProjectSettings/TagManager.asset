@@ -8,6 +8,7 @@ TagManager:
   - Medical
   - Ammo
   - GameOver
+  - MonsterRagDoll
   layers:
   - Default
   - TransparentFX

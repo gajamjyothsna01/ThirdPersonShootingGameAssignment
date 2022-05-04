@@ -10,7 +10,7 @@ public class MonsterController : MonoBehaviour
     public float walkingSped;
     public float runningSpeed;
     public ParticleSystem particleSystem;
-    public GameObject enemyRagDoll;
+   // public GameObject enemyRagDoll;
     enum STATE
     {
         IDLE, WONDER, CHASE, ATTCK, DEAD
@@ -106,22 +106,37 @@ public class MonsterController : MonoBehaviour
                 TurnOfAllAnim();
                 animator.SetBool("isDead", true);
                 Debug.Log("Entered Dead State");
-                StartCoroutine("DeathAfterDelay");
+                
                
                 this.gameObject.SetActive(false);
-                Instantiate(enemyRagDoll, transform.position, Quaternion.identity);
+               // Instantiate(enemyRagDoll, transform.position, Quaternion.identity);
+                
+                GameObject temp = PoolScript.instance.GetObjectsFromPool("MonsterRagDoll");
+                Debug.Log("RagdOll form Pool");
+                if (temp != null)
+                {
+                    
+                    temp.SetActive(true);
+                    Debug.Log("Making to true");
+                   // StartCoroutine("DeathAfterDelay");
+                    //temp.transform.position = new Vector3(UnityEngine.Random.Range(-11f, 15f), 0, UnityEngine.Random.Range(-12f, -11f));
+                    temp.transform.position = this.transform.position;
+                }
+
                 particleSystem.Play();
-                Debug.Log("Monster Went to Pool");
+              //  temp.SetActive(false);
+               // Debug.Log("Monster Went to Pool");
                 break;
             default:
                 break;
         }
 
     }
+    /*
     IEnumerator DeathAfterDelay()
     {
         yield return new WaitForSeconds(15);
-    }
+    }*/
     public void TurnOfAllAnim()
     {
         animator.SetBool("isRunning", false);
